@@ -8,4 +8,8 @@ class Team extends Model
 {
     //Table name
     protected $table = 'teams';
+
+    public function user(){
+        return $this->belongsTo('App\user');
+    }
 }

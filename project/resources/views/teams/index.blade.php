@@ -13,5 +13,5 @@
         <p>Neviena komanda netika atrasta</p>
     @endif
 
-    <a href="/teams/create" class="btn btn-secondary" role="button" >Pievienot komandu</a>
+
 @endsection

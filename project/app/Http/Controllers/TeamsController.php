@@ -43,6 +43,7 @@ class TeamsController extends Controller
         $team = new Team;
         $team->team_name = $request->input('team_name');
         $team->info = $request->input('info');
+        $team->user_id = auth()->user()->id;
         $team->save();
 
         return redirect('/teams')->with('success', 'Komanda pievienota');
