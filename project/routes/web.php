@@ -21,3 +21,7 @@ Route::get('/upcoming', 'PagesController@upcoming');
 Route::get('/about', 'PagesController@about');
 
 Route::resource('teams', 'TeamsController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

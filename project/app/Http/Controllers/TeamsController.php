@@ -40,7 +40,12 @@ class TeamsController extends Controller
             'info' => 'required'
         ]);
 
-        return 123;
+        $team = new Team;
+        $team->team_name = $request->input('team_name');
+        $team->info = $request->input('info');
+        $team->save();
+
+        return redirect('/teams')->with('success', 'Komanda pievienota');
     }
 
     /**
@@ -63,7 +68,8 @@ class TeamsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $team = Team::find($id);
+        return view('teams.edit')->with('team', $team);
     }
 
     /**
@@ -75,7 +81,17 @@ class TeamsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'team_name' => 'required',
+            'info' => 'required'
+        ]);
+
+        $team = Team::find($id);
+        $team->team_name = $request->input('team_name');
+        $team->info = $request->input('info');
+        $team->save();
+
+        return redirect('/teams')->with('success', 'Informācija tika izlabota');
     }
 
     /**
@@ -86,6 +102,8 @@ class TeamsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $team = Team::find($id);
+        $team->delete();
+        return redirect('/teams')->with('success', 'Komanda noņemta');
     }
 }
