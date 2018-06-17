@@ -1,7 +1,7 @@
 @extends('Layout.app')
 
 @section('content')
-    <h1>Labot komandu</h1>
+    <div><h1 class="mb-3 mt-3">Labot komandu</h1></div>
     <hr>
     {!! Form::open(['action' => ['TeamsController@update', $team->id], 'method' => 'POST', 'enctype'=>'multipart/form-data']) !!}
     <div class="form-group">

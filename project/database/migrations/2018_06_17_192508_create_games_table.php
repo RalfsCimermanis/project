@@ -19,6 +19,7 @@ class CreateGamesTable extends Migration
             $table->foreign('team_id_1')->references('id')->on('teams');
             $table->foreign('team_id_2')->references('id')->on('teams');
             $table->date('date');
+            $table->timestamps();
         });
     }
 

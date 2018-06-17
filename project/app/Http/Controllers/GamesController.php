@@ -29,7 +29,10 @@ class GamesController extends Controller
      */
     public function create()
     {
-        //
+        {
+            $teams = Team::all();
+            return view('games.create')->with('teams', $teams);
+        }
     }
 
     /**
@@ -40,7 +43,15 @@ class GamesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'date' => 'date_format:Y-m-d'
+        ]);
+        $game = new Game;
+        $game->team_id_1 = $request->input('team_id_1');
+        $game->team_id_2 = $request->input('team_id_2');
+        $game->date = $request->input('date');
+        $game->save();
+        return redirect('/games')->with('success', 'Spēle pievienota');
     }
 
     /**

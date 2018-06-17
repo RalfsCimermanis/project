@@ -1,7 +1,7 @@
 @extends('Layout.app')
 
 @section('content')
-    <h1>Pievienot komandu</h1>
+    <div><h1 class="mb-3 mt-3">Pievienot komandu</h1></div>
     <hr>
     {!! Form::open(['action' => 'TeamsController@store', 'method' => 'POST', 'enctype'=>'multipart/form-data']) !!}
     <div class="form-group">

@@ -1,7 +1,8 @@
 @extends('Layout.app')
 
 @section('content')
-    <h1>Spēļu saraksts</h1>
+    <div><h1 class="mb-3 mt-3">Spēļu saraksts</h1></div>
+    <div style="float: right;"> </div>
     @if(count($games)>0)
         @foreach($games as $game)
             <table class="table">
@@ -9,31 +10,38 @@
             @foreach($teams as $team)
                 @if ($game->team_id_1 == $team->id)
 
-                            <td>
+                            <td style="width: 20%;">
                                 <img style="height: 250px; width: 250px" src="/storage/cover_images/{{$team->cover_image}}">
                             </td>
-                            <td class="align-middle">
-                                <h2 style="padding-right:0%"><a href="/teams/{{$team->id}}">{{$team->team_name}}</a></h2>
+                            <td class="align-middle" style="width: 20%;">
+                                <h2 style="padding-right:0%"><b><a href="/teams/{{$team->id}}">{{$team->team_name}}</a></b></h2>
                             </td>
                 @endif
                     @endforeach
-                    <td class="align-middle">
-                        <h1>PRET</h1>
+                    <td class="align-middle" style="width: 20%;">
+                       <div class="mx-auto" style="width: 100px;">
+                           <h1>PRET</h1>
+                       </div>
                     </td>
                     @foreach($teams as $team)
                         @if ($game->team_id_2 == $team->id)
-                        <td  class="align-middle">
-                            <h2><a href="/teams/{{$team->id}}">{{$team->team_name}}</a></h2>
+                        <td  class="align-middle" style="width: 20%;">
+                            <h2><b><a href="/teams/{{$team->id}}">{{$team->team_name}}</a></b></h2>
                         </td>
 
-                        <td>
+                        <td style="width: 20%;">
                         <img style="height: 250px; width: 250px" src="/storage/cover_images/{{$team->cover_image}}">
                         </td>
 
                         @endif
                     @endforeach
                 </tr>
-                <div  class="d-table-row align-middle"><p>spēle notiks {{$game->date}}</p></div>
+                <tr><td colspan="5" class="align-middle" style="width: 20%;">
+                        <div class="mx-auto" style="width: 350px;">
+                        <h2>Spēle notiks {{$game->date}}</h2>
+                        </div>
+                    </td>
+                </tr>
             </table>
                 @endforeach
     @else
