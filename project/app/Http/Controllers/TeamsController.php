@@ -3,9 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Team;
 class TeamsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' =>['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,13 +47,31 @@ class TeamsController extends Controller
     {
         $this->validate($request, [
             'team_name' => 'required',
-            'info' => 'required'
+            'info' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
         ]);
+
+        //file upload
+        if($request->hasFile('cover_image')){
+            //Get filename with the extension
+            $fileNameWithExt = $request->file('cover_image')->getClientOriginalName();
+            //Get just file name
+            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //Get just ext
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            //File name to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            //Upload image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+        } else{
+            $fileNameToStore = 'noimage.jpg';
+        }
 
         $team = new Team;
         $team->team_name = $request->input('team_name');
         $team->info = $request->input('info');
         $team->user_id = auth()->user()->id;
+        $team->cover_image = $fileNameToStore;
         $team->save();
 
         return redirect('/teams')->with('success', 'Komanda pievienota');
@@ -69,7 +97,12 @@ class TeamsController extends Controller
      */
     public function edit($id)
     {
+
         $team = Team::find($id);
+            //check for correct user
+        if(auth()->user()->id !==$team->user_id) {
+            return redirect('/teams')->with('error', 'neautorizēta pieeja');
+        }
         return view('teams.edit')->with('team', $team);
     }
 
@@ -87,9 +120,26 @@ class TeamsController extends Controller
             'info' => 'required'
         ]);
 
+        //file upload
+        if($request->hasFile('cover_image')){
+            //Get filename with the extension
+            $fileNameWithExt = $request->file('cover_image')->getClientOriginalName();
+            //Get just file name
+            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //Get just ext
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            //File name to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            //Upload image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+        }
+
         $team = Team::find($id);
         $team->team_name = $request->input('team_name');
         $team->info = $request->input('info');
+        if($request->hasFile('cover_image')){
+            $team->cover_image = $fileNameToStore;
+        }
         $team->save();
 
         return redirect('/teams')->with('success', 'Informācija tika izlabota');
@@ -104,6 +154,15 @@ class TeamsController extends Controller
     public function destroy($id)
     {
         $team = Team::find($id);
+        //check for correct user
+        if(auth()->user()->id !==$team->user_id) {
+            return redirect('/teams')->with('error', 'neautorizēta pieeja');
+        }
+
+        if($team->cover_image != 'noimage.jpg'){
+            Storage::delete('public/cover_images/'.$team->cover_image);
+        }
+
         $team->delete();
         return redirect('/teams')->with('success', 'Komanda noņemta');
     }
