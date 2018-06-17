@@ -100,7 +100,7 @@ class TeamsController extends Controller
 
         $team = Team::find($id);
             //check for correct user
-        if(auth()->user()->id !==$team->user_id) {
+        if((auth()->user()->id !==$team->user_id) and (auth()->user()->role !== 'Admin')) {
             return redirect('/teams')->with('error', 'neautorizēta pieeja');
         }
         return view('teams.edit')->with('team', $team);
@@ -155,7 +155,7 @@ class TeamsController extends Controller
     {
         $team = Team::find($id);
         //check for correct user
-        if(auth()->user()->id !==$team->user_id) {
+        if((auth()->user()->id !==$team->user_id) and (auth()->user()->role !== 'Admin')) {
             return redirect('/teams')->with('error', 'neautorizēta pieeja');
         }
 

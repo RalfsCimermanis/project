@@ -24,7 +24,7 @@
                         </tr>
                         @foreach($teams as $team)
                             <tr>
-                                <td>{{$team->team_name}}</td>
+                                <td><a href="/teams/{{$team->id}}">{{$team->team_name}}</a></td>
                                 <td><a href="/teams/{{$team->id}}/edit" class="btn btn-primary">Labot</a></td>
                                 <td>
                                     {!!Form::open(['action' => ['TeamsController@destroy', $team->id], 'method' => 'POST', 'class' => 'float-lg-right'])!!}

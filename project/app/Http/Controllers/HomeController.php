@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Team;
 use Illuminate\Http\Request;
 
 
@@ -26,7 +27,12 @@ class HomeController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        return view('home')->with('teams', $user->teams);
+        if (auth()->user()->role !=='Admin') {
+            $user = User::find($user_id);
+            return view('home')->with('teams', $user->teams);
+        } else{
+            $teams = Team::all();
+            return view('home')->with('teams', $teams);
+        }
     }
 }
