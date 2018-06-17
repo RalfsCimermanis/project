@@ -1,27 +1,22 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side of navbar-->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/">Sākums</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/results">Results</a>
+                    <a class="nav-link" href="/results">Rezultāti</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/games">Gaidāmās spēles</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/teams">Teams</a>
+                    <a class="nav-link" href="/teams">Komandas</a>
                 </li>
             </ul>
 
@@ -43,11 +38,12 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a href="/games/create" class="dropdown-item">Pievienot spēli</a>
+                            <a href="/results/create" class="dropdown-item">Pievienot rezultātu</a>
                             <a href="/home" class="dropdown-item" >Panelis</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                Iziet
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

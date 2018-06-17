@@ -35,13 +35,25 @@
 
                         @endif
                     @endforeach
+
                 </tr>
-                <tr><td colspan="5" class="align-middle" style="width: 20%;">
+
+                    <td style="width: 20%;"></td>
+                    <td colspan="3" class="align-middle" style="width: 60%;">
                         <div class="mx-auto" style="width: 350px;">
                         <h2>Spēle notiks {{$game->date}}</h2>
                         </div>
-                    </td>
-                </tr>
+
+                <td style="width: 20%;">
+                    @if(!Auth::guest())
+                        @if((Auth::user()->id ==$game->user_id) or (Auth::user()->role == 'Admin'))
+                    {!!Form::open(['action' => ['GamesController@destroy', $game->id], 'method' => 'POST', 'class' => 'float-lg-right'])!!}
+                    {{Form::hidden('_method', 'DELETE')}}
+                    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                    {!! Form::close() !!}
+                    @endif
+                    @endif
+                </td>
             </table>
                 @endforeach
     @else

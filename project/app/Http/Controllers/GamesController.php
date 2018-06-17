@@ -30,9 +30,9 @@ class GamesController extends Controller
     public function create()
     {
         {
-            $teams = Team::all();
-            return view('games.create')->with('teams', $teams);
-        }
+        $teams = Team::all();
+        return view('games.create')->with('teams', $teams);
+    }
     }
 
     /**
@@ -50,42 +50,9 @@ class GamesController extends Controller
         $game->team_id_1 = $request->input('team_id_1');
         $game->team_id_2 = $request->input('team_id_2');
         $game->date = $request->input('date');
+        $game->user_id = auth()->user()->id;
         $game->save();
         return redirect('/games')->with('success', 'Spēle pievienota');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -96,6 +63,13 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $game = Game::find($id);
+        //check for correct user
+        if((auth()->user()->id !==$game->user_id) and (auth()->user()->role !== 'Admin')) {
+            return redirect('/games')->with('error', 'neautorizēta pieeja');
+        }
+
+        $game->delete();
+        return redirect('/games')->with('success', 'Spēle noņemta');
     }
 }

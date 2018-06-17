@@ -22,7 +22,7 @@ Route::get('/about', 'PagesController@about');
 
 Route::resource('teams', 'TeamsController');
 Route::resource('games', 'GamesController');
-
+Route::resource('results', 'ResultsController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
