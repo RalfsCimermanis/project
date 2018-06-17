@@ -18,7 +18,7 @@
                     <a class="nav-link" href="/results">Results</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/upcoming">Upcoming</a>
+                    <a class="nav-link" href="/games">Gaidāmās spēles</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/teams">Teams</a>

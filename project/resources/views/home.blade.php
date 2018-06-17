@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <a href="/teams/create" class="btn btn-outline-primary ">Pievienot komandu</a>
+                    <a href="/teams/create" class="btn btn-outline-primary mb-3">Pievienot komandu</a>
                     <h2>Komandu sarakts</h2>
                         @if(count($teams)>0)
                     <table class="table table-striped">

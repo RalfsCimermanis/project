@@ -21,6 +21,7 @@ Route::get('/upcoming', 'PagesController@upcoming');
 Route::get('/about', 'PagesController@about');
 
 Route::resource('teams', 'TeamsController');
+Route::resource('games', 'GamesController');
 
 Auth::routes();
 
