@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <a href="/teams/create" class="btn btn-outline-primary mb-3">@lang('messages.add_team')</a>
-                    <h2>Komandu sarakts</h2>
+                    <h2>@lang('messages.team_list')</h2>
                         @if(count($teams)>0)
                     <table class="table table-striped">
                         <tr>

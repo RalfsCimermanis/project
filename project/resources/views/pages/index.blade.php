@@ -7,7 +7,7 @@
             <h1>@lang('messages.welcome')</h1>
             <hr>
             <h3>@lang('messages.about_p')</h3>
-            <p class="lead">@lang('messages.about_text)</p>
+            <p class="lead">@lang('messages.about_text')</p>
         </div>
     </main>
 @endsection

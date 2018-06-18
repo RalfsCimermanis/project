@@ -32,7 +32,7 @@
                     </li>
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
@@ -52,8 +52,9 @@
                         </div>
                     </li>
                 @endguest
+
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @lang('messages.language')
                         <span class="caret"></span>
                     </a>
@@ -62,6 +63,7 @@
                             <a class="dropdown-item" href="/lang/en">EN</a>
                     </div>
                 </li>
+
             </ul>
         </div>
     </div>

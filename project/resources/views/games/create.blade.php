@@ -5,7 +5,9 @@
     <hr>
     {!! Form::open(['action' => 'GamesController@store', 'method' => 'POST', 'enctype'=>'multipart/form-data']) !!}
     <div class="form-group">
-        {!! Form::Label('team_id_1', __('messages.choose_team_1')) !!}
+      <p> @lang('messages.choose_team_1')</p>
+
+
         <select class="form-control" name="team_id_1">
             @foreach($teams as $team)
                 <option value="{{$team->id}}">{{$team->team_name}}</option>
@@ -13,7 +15,10 @@
         </select>
     </div>
     <div class="form-group">
-        {!! Form::Label('team_id_2', __('messages.choose_team_2')) !!}
+
+        <p> @lang('messages.choose_team_2')</p>
+
+
         <select class="form-control" name="team_id_2">
             @foreach($teams as $team)
                 <option value="{{$team->id}}">{{$team->team_name}}</option>

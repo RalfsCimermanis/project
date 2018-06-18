@@ -11,10 +11,10 @@
                         @if ($result->team_id_1 == $team->id)
 
                             <td style="width: 20%;">
-                                <img style="height: 250px; width: 250px" src="/storage/cover_images/{{$team->cover_image}}">
+                                <img style="height: 250px; width: 250px" src="/storage/cover_images/{{$team->cover_image}}" alt="/storage/cover_images/noimage.jpg">
                             </td>
                             <td class="align-middle" style="width: 20%;">
-                                <h2 style="padding-right:0%"><b><a href="/teams/{{$team->id}}">{{$team->team_name}}</a></b></h2>
+                                <h2><b><a href="/teams/{{$team->id}}">{{$team->team_name}}</a></b></h2>
                             </td>
                         @endif
                     @endforeach
@@ -30,18 +30,19 @@
                             </td>
 
                             <td style="width: 20%;">
-                                <img style="height: 250px; width: 250px" src="/storage/cover_images/{{$team->cover_image}}">
+                                <img style="height: 250px; width: 250px" src="/storage/cover_images/{{$team->cover_image}}" alt="/storage/cover_images/noimage.jpg">
                             </td>
 
                         @endif
                     @endforeach
 
                 </tr>
-
+                <tr>
                 <td style="width: 20%;">
                 </td>
                 <td colspan="3" class="align-middle" style="width: 60%;">
                     <div class="mx-auto" style="width: 350px;">
+
                         <h4>@lang('messages.game_happened') {{$result->date}}</h4>
                     </div>
 
@@ -55,6 +56,7 @@
                         @endif
                     @endif
                 </td>
+                </tr>
             </table>
         @endforeach
     @else
