@@ -1,11 +1,11 @@
 @extends('Layout.app')
 
 @section('content')
-   <div class="mb-3 mt-3"><a href="/teams" class="btn btn-outline-secondary">Atgriesties</a></div>
+   <div class="mb-3 mt-3"><a href="/teams" class="btn btn-outline-secondary">@lang('messages.back')</a></div>
     <img style="height: 250px; width: 250px " class="rounded float-left mr-3" src="/storage/cover_images/{{$team->cover_image}}">
    <div class="align-middle"><h1>{{$team->team_name}}</h1></div>
-   <div class="mb-2"><small>Treneris {{$team->user->name}}</small></div>
-    <h4 >Komanadas apraksts</h4>
+   <div class="mb-2"><small>@lang('messages.trainer') {{$team->user->name}}</small></div>
+    <h4 >@lang('messages.about_team')</h4>
     <div>
         <p>
     {!!$team->info!!}
@@ -18,7 +18,7 @@
 
     {!!Form::open(['action' => ['TeamsController@destroy', $team->id], 'method' => 'POST', 'class' => 'float-lg-right'])!!}
         {{Form::hidden('_method', 'DELETE')}}
-        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+        {{Form::submit(__('messages.delete'), ['class' => 'btn btn-danger'])}}
     {!! Form::close() !!}
     @endif
     @endif

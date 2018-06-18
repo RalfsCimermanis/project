@@ -26,3 +26,4 @@ Route::resource('results', 'ResultsController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('lang/{locale}','LanguageController');

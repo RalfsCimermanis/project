@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Panelis</div>
+                <div class="card-header">@lang('messages.dashboard')</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,30 +13,30 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <a href="/teams/create" class="btn btn-outline-primary mb-3">Pievienot komandu</a>
+                    <a href="/teams/create" class="btn btn-outline-primary mb-3">@lang('messages.add_team')</a>
                     <h2>Komandu sarakts</h2>
                         @if(count($teams)>0)
                     <table class="table table-striped">
                         <tr>
-                            <td><h5> Nosaukums</h5></td>
+                            <td><h5> @lang('messages.the_title')</h5></td>
                             <td></td>
                             <td></td>
                         </tr>
                         @foreach($teams as $team)
                             <tr>
                                 <td><a href="/teams/{{$team->id}}">{{$team->team_name}}</a></td>
-                                <td><a href="/teams/{{$team->id}}/edit" class="btn btn-primary">Labot</a></td>
+                                <td><a href="/teams/{{$team->id}}/edit" class="btn btn-primary">@lang('messages.edit')</a></td>
                                 <td>
                                     {!!Form::open(['action' => ['TeamsController@destroy', $team->id], 'method' => 'POST', 'class' => 'float-lg-right'])!!}
                                     {{Form::hidden('_method', 'DELETE')}}
-                                    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                                    {{Form::submit(__('messages.delete'), ['class' => 'btn btn-danger'])}}
                                     {!! Form::close() !!}
                                 </td>
                             </tr>
                             @endforeach
                     </table>
                     @else
-                    <p>Nav nevienas komandas</p>
+                    <p>@lang('messages.no_team')</p>
                     @endif
                 </div>
             </div>

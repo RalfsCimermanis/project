@@ -1,7 +1,7 @@
 @extends('Layout.app')
 
 @section('content')
-    <div><h1 class="mb-3 mt-3">Spēļu saraksts</h1></div>
+    <div><h1 class="mb-3 mt-3">@lang('messages.game_list')</h1></div>
     <div style="float: right;"> </div>
     @if(count($games)>0)
         @foreach($games as $game)
@@ -20,7 +20,7 @@
                     @endforeach
                     <td class="align-middle" style="width: 20%;">
                        <div class="mx-auto" style="width: 100px;">
-                           <h1>PRET</h1>
+                           <h1>@lang('messages.versus')</h1>
                        </div>
                     </td>
                     @foreach($teams as $team)
@@ -41,7 +41,7 @@
                     <td style="width: 20%;"></td>
                     <td colspan="3" class="align-middle" style="width: 60%;">
                         <div class="mx-auto" style="width: 350px;">
-                        <h2>Spēle notiks {{$game->date}}</h2>
+                        <h2>@lang('messages.game_happen') {{$game->date}}</h2>
                         </div>
 
                 <td style="width: 20%;">
@@ -49,7 +49,7 @@
                         @if((Auth::user()->id ==$game->user_id) or (Auth::user()->role == 'Admin'))
                     {!!Form::open(['action' => ['GamesController@destroy', $game->id], 'method' => 'POST', 'class' => 'float-lg-right'])!!}
                     {{Form::hidden('_method', 'DELETE')}}
-                    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                    {{Form::submit(__('messages.delete'), ['class' => 'btn btn-danger'])}}
                     {!! Form::close() !!}
                     @endif
                     @endif
@@ -57,7 +57,7 @@
             </table>
                 @endforeach
     @else
-        <p>Neviena Spēle netika atrasta</p>
+        <p>@lang('messages.no_game')</p>
     @endif
 
 

@@ -1,21 +1,21 @@
 @extends('Layout.app')
 
 @section('content')
-    <div><h1 class="mb-3 mt-3">Labot komandu</h1></div>
+    <div><h1 class="mb-3 mt-3">@lang('messages.edit_game')</h1></div>
     <hr>
     {!! Form::open(['action' => ['TeamsController@update', $team->id], 'method' => 'POST', 'enctype'=>'multipart/form-data']) !!}
     <div class="form-group">
-        {{Form::label('team_name', 'Komandas Nosaukums')}}
-        {{Form::text('team_name', $team->team_name, ['class' => 'form-control', 'placeholder' => 'Komandas nosaukums'])}}
+        {{Form::label('team_name', __('messages.team_name')}}
+        {{Form::text('team_name', $team->team_name, ['class' => 'form-control', 'placeholder' => __('messages.team_name')])}}
     </div>
     <div class="form-group">
-        {{Form::label('info', 'Informacija par komandu')}}
-        {{Form::textarea('info', $team->info, ['id' => 'article-ckeditor','class' => 'form-control', 'placeholder' => 'Info'])}}
+        {{Form::label('info', __('messages.team_info'))}}
+        {{Form::textarea('info', $team->info, ['id' => 'article-ckeditor','class' => 'form-control', 'placeholder' => __('messages.team_info')])}}
     </div>
     <div class="form-group">
         {{Form::file('cover_image')}}
     </div>
     {{Form::hidden('_method','PUT')}}
-    {{Form::submit('Labot', ['class'=>'btn btn-primary'])}}
+    {{Form::submit(__('messages.edit'), ['class'=>'btn btn-primary'])}}
     {!! Form::close() !!}
 @endsection

@@ -1,7 +1,7 @@
 @extends('Layout.app')
 
 @section('content')
-    <div><h1 class="mb-3 mt-3">Spēļu Rezultāti</h1></div>
+    <div><h1 class="mb-3 mt-3">@lang('messages.result_g')</h1></div>
     <div style="float: right;"> </div>
     @if(count($results)>0)
         @foreach($results as $result)
@@ -42,7 +42,7 @@
                 </td>
                 <td colspan="3" class="align-middle" style="width: 60%;">
                     <div class="mx-auto" style="width: 350px;">
-                        <h2>Spēle notika {{$result->date}}</h2>
+                        <h2>@lang('messages.game_happened') {{$result->date}}</h2>
                     </div>
 
                 <td style="width: 20%;">
@@ -50,7 +50,7 @@
                         @if((Auth::user()->id ==$result->user_id) or (Auth::user()->role == 'Admin'))
                             {!!Form::open(['action' => ['ResultsController@destroy', $result->id], 'method' => 'POST', 'class' => 'float-lg-right'])!!}
                             {{Form::hidden('_method', 'DELETE')}}
-                            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                            {{Form::submit(__('messages.delete'), ['class' => 'btn btn-danger'])}}
                             {!! Form::close() !!}
                         @endif
                     @endif
@@ -58,7 +58,7 @@
             </table>
         @endforeach
     @else
-        <p>Neviens ieraksts par rezultātiem netika atrasts</p>
+        <p>@lang('messages.no_results')</p>
     @endif
 
 
