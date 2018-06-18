@@ -44,5 +44,5 @@ return [
     'about_team' => 'Team Description',
     'back' => 'Back',
     'the_title' => 'Name',
-
+    'add_team'=> 'Add Team',
 ];

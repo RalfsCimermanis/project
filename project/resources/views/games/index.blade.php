@@ -41,7 +41,7 @@
                     <td style="width: 20%;"></td>
                     <td colspan="3" class="align-middle" style="width: 60%;">
                         <div class="mx-auto" style="width: 350px;">
-                        <h2>@lang('messages.game_happen') {{$game->date}}</h2>
+                        <h4>@lang('messages.game_happen') {{$game->date}}</h4>
                         </div>
 
                 <td style="width: 20%;">

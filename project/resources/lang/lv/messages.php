@@ -44,4 +44,5 @@ return [
         'about_team' => 'Komandas apraksts',
         'back' => 'Atpakaļ',
         'the_title' => 'Nosaukums',
+        'add_team'=> 'Pievienot komandu',
     ];
